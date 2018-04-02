@@ -1,35 +1,3 @@
-[submodule "ome-common-java"]
-	path = ome-common-java
-	url = https://github.com/ome/ome-common-java.git
-	branch = master
-[submodule "ome-model"]
-	path = ome-model
-	url = https://github.com/ome/ome-model.git
-	branch = master
-[submodule "ome-poi"]
-	path = ome-poi
-	url = https://github.com/ome/ome-poi.git
-	branch = master
-[submodule "ome-mdbtools"]
-	path = ome-mdbtools
-	url = https://github.com/ome/ome-mdbtools.git
-	branch = master
-[submodule "ome-jai"]
-	path = ome-jai
-	url = https://github.com/ome/ome-jai.git
-	branch = master
-[submodule "ome-codecs"]
-	path = ome-codecs
-	url = https://github.com/ome/ome-codecs.git
-	branch = master
-[submodule "ome-metakit"]
-	path = ome-metakit
-	url = https://github.com/ome/ome-metakit.git
-	branch = master
-[submodule "ome-stubs"]
-	path = ome-stubs
-	url = https://github.com/ome/ome-stubs.git
-	branch = master
 [submodule "bioformats"]
 	path = bioformats
 	url = https://github.com/openmicroscopy/bioformats.git
@@ -53,10 +21,6 @@
 [submodule "bio-formats-documentation"]
 	path = bio-formats-documentation
 	url = https://github.com/ome/bio-formats-documentation.git
-	branch = master
-[submodule "ome-turbojpeg"]
-	path = ome-turbojpeg
-	url = https://github.com/ome/ome-turbojpeg.git
 	branch = master
 [submodule "bio-formats-examples"]
 	path = bio-formats-examples
