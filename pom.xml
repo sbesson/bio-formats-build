@@ -16,15 +16,6 @@
   <inceptionYear>2018</inceptionYear>
 
   <modules>
-    <module>ome-common-java</module>
-    <module>ome-model</module>
-    <module>ome-poi</module>
-    <module>ome-mdbtools</module>
-    <module>ome-jai</module>
-    <module>ome-codecs</module>
-    <module>ome-stubs</module>
-    <module>ome-metakit</module>
-    <module>ome-turbojpeg</module>
     <module>bioformats</module>
     <module>bio-formats-examples</module>
     <module>bio-formats-bundles</module>
