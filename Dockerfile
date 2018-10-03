@@ -25,7 +25,7 @@ RUN git submodule update --init
 RUN mvn clean install -DskipSphinxTests
 
 WORKDIR /bio-formats-build/bioformats
-RUN ant clean jars tools test
+RUN ant clean jars tools test dist-bftools dist-matlab dist-octave
 
 
 ENV TZ "Europe/London"
