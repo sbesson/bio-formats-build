@@ -1,25 +1,16 @@
-FROM ubuntu:latest
-MAINTAINER ome-devel@lists.openmicroscopy.org.uk
+ARG BUILD_IMAGE=openjdk:8
+ARG RUN_IMAGE=openjdk:8
 
-RUN apt-get -q update && apt-get -qy install openjdk-8-jdk \
-  maven \
-  ant \
-  git \
-  python-sphinx \
-  locales
+# Build image
+FROM ${BUILD_IMAGE} as build
+LABEL maintainer="ome-devel@lists.openmicroscopy.org.uk"
 
-RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
-    dpkg-reconfigure --frontend=noninteractive locales && \
-    update-locale LANG=en_US.UTF-8
+RUN apt-get -q update && apt-get -qy install maven ant git python-sphinx
 
-ENV LANG en_US.UTF-8 
+RUN id 1000 || useradd -u 1000 -ms /bin/bash build
+COPY --chown=1000:1000 . /bio-formats-build
 
-RUN useradd -m bf
-
-COPY . /bio-formats-build
-RUN chown -R bf /bio-formats-build
-
-USER bf
+USER 1000
 WORKDIR /bio-formats-build
 RUN git submodule update --init
 RUN mvn clean install -DskipSphinxTests
@@ -27,8 +18,12 @@ RUN mvn clean install -DskipSphinxTests
 WORKDIR /bio-formats-build/bioformats
 RUN ant clean jars tools test
 
-
 ENV TZ "Europe/London"
 
 WORKDIR /bio-formats-build/bioformats/components/test-suite
 ENTRYPOINT ["/usr/bin/ant", "test-automated", "-Dtestng.directory=/data", "-Dtestng.configDirectory=/config"]
+
+FROM ${RUN_IMAGE}
+USER bf
+COPY --chown bf:bf --from=build /bio-formats-build/bioformats/tools /bio-formats-build/bioformats/tools
+WORKDIR /bio-formats-build/bioformats/tools
