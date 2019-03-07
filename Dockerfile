@@ -25,6 +25,6 @@ WORKDIR /bio-formats-build/bioformats/components/test-suite
 ENTRYPOINT ["/usr/bin/ant", "test-automated", "-Dtestng.directory=/data", "-Dtestng.configDirectory=/config"]
 
 FROM ${RUN_IMAGE}
-USER bf
-COPY --chown bf:bf --from=build /bio-formats-build/bioformats/tools /bio-formats-build/bioformats/tools
+USER 1000
+COPY --from=build /bio-formats-build/bioformats/tools /bio-formats-build/bioformats/tools
 WORKDIR /bio-formats-build/bioformats/tools
