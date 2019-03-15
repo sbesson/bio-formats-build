@@ -6,7 +6,10 @@ FROM ${BUILD_IMAGE} as build
 LABEL maintainer="ome-devel@lists.openmicroscopy.org.uk"
 
 USER root
-RUN apt-get -q update && apt-get -qy install maven ant git python-sphinx
+RUN apt-get -q update && apt-get -qy install maven \
+   ant \
+   git \
+   python-sphinx
 
 RUN id 1000 || useradd -u 1000 -ms /bin/bash build
 COPY --chown=1000:1000 . /bio-formats-build
